@@ -45,11 +45,7 @@ router.beforeEach((to, from, next) => {
   }
 
   // 已登录状态；当路由到login时，跳转至首页
-  // if (to.name === 'bindPhone') {
-  //   if (token != null) {
-  //     router.push({ path: '/goods', });
-  //   }
-  // }
+
   next();
 });
 
