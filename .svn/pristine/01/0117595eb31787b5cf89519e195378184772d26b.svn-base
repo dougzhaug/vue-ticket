@@ -1,0 +1,3 @@
+VUE_APP_BASE_URL=http://demo.xhcard.xh365.net
+VUE_APP_API_BASE_URL=http://xhcard.xh365.net/api
+VUE_APP_IMG_BASE_URL=http://xhcard.xh365.net

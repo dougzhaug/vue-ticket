@@ -1,0 +1,3 @@
+VUE_APP_BASE_URL=http://mp.card.dev.loveliyuan.com
+VUE_APP_API_BASE_URL=http://card.dev.loveliyuan.com/api
+VUE_APP_IMG_BASE_URL=http://card.dev.loveliyuan.com
