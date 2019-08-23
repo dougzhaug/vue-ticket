@@ -79,7 +79,7 @@
             </div>
 
             <div class="bottom-button">
-                <Button type="primary" @click="addToWechatCard">{{butText}}</Button>
+                <Button type="primary" @click="addToWechatCard">{{isInWechat?'已添加到微信卡包':'添加到微信卡包'}}</Button>
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
                 logo:null,
                 bgImg:null,
                 isExpire:false,     //卡券是否过期
-                butText:'添加到微信卡包',
+                isInWechat:false,   //是否已经放入微信卡包
             }
         },
         methods:{
@@ -129,6 +129,16 @@
             //添加到微信卡包
             addToWechatCard(){
 
+                if(this.isInWechat){
+                    Dialog.confirm({
+                        title: '提示',
+                        message: '<img width="70%" src="'+wechat_add_to_card+'"><br/>已添加到微信卡包，可以到我-卡包中查看',
+                        confirmButtonText:"我知道了",
+                        showCancelButton:false,
+                    })
+                    return;
+                }
+
                 var that = this;
 
                 AddToWechatCard(this.$route.query.id).then((response)=>{
@@ -146,13 +156,12 @@
                                 //获取卡券信息
                                 GetCardDetails(that.$route.query.id).then((response)=>{
                                     if(response.in_wx_card){
+                                        that.isInWechat = true;
                                         Dialog.confirm({
                                             title: '提示',
                                             message: '<img width="70%" src="'+wechat_add_to_card+'"><br/>已添加到微信卡包，可以到我-卡包中查看',
                                             confirmButtonText:"我知道了",
                                             showCancelButton:false,
-                                        }).then(()=>{
-                                            that.butText = '查看会员卡';
                                         })
                                     }
                                 })
@@ -174,7 +183,7 @@
                     this.isExpire = true;
                 }
                 if(response.in_wx_card){
-                    this.butText = '查看会员卡';
+                    this.isInWechat=true;
                 }
             })
 
